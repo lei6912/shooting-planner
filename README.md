@@ -1,2 +1,0 @@
-# shooting-planner
-planer
