@@ -1,736 +1,134 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="齋僧拍攝">
-<meta name="theme-color" content="#1a1a2e">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content="齋僧拍攝">
-<title>齋僧拍攝計畫</title>
+  <meta charset="UTF-8" />
+  <title>拍計畫 ｜ 國二忠 齋僧活動</title>
 
-<!-- PWA Manifest (inline via data URI) -->
-<link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22%E9%BD%8B%E5%83%A7%E6%B4%BB%E5%8B%95%E6%8B%8D%E6%94%9D%E8%A8%88%E7%95%AB%22%2C%22short_name%22%3A%22%E9%BD%8B%E5%83%A7%E6%8B%8D%E6%94%9D%22%2C%22description%22%3A%22%E5%9C%8B%E4%BA%8C%E5%BF%A0%E9%BD%8B%E5%83%A7%E6%B4%BB%E5%8B%95%E6%8B%8D%E6%94%9D%E6%8F%90%E9%86%92%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%231a1a2e%22%2C%22theme_color%22%3A%22%231a1a2e%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520512%2520512%27%253E%253Crect%2520fill%3D%27%25231a1a2e%27%2520width%3D%27512%27%2520height%3D%27512%27%2520rx%3D%2796%27%2F%253E%253Ctext%2520x%3D%27256%27%2520y%3D%27340%27%2520text-anchor%3D%27middle%27%2520font-size%3D%27280%27%253E%25F0%259F%258E%25AC%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+  <!-- Mobile / iOS PWA meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="color-scheme" content="dark" />
 
-<!-- Apple Touch Icon (SVG fallback via inline canvas-generated PNG) -->
-<link rel="apple-touch-icon" id="apple-icon">
+  <!-- iOS standalone -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="拍計畫" />
+  <meta name="format-detection" content="telephone=no" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.webmanifest" />
 
-<style>
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  html,body{overscroll-behavior:none;-webkit-overflow-scrolling:touch;background:#1a1a2e}
-  body{font-family:'Noto Serif TC','Noto Sans TC',serif;color:#E2E8F0;min-height:100vh;
-    min-height:-webkit-fill-available;min-height:100dvh;
-    background:linear-gradient(165deg,#1a1a2e 0%,#16213e 40%,#0f3460 100%)}
-  /* Safe area padding for iPhone notch */
-  .safe-top{padding-top:env(safe-area-inset-top,0)}
-  .safe-bottom{padding-bottom:calc(env(safe-area-inset-bottom,0) + 0px)}
-  ::-webkit-scrollbar{width:4px}
-  ::-webkit-scrollbar-track{background:transparent}
-  ::-webkit-scrollbar-thumb{background:rgba(251,191,36,0.3);border-radius:4px}
-  @keyframes float0{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.1)}}
-  @keyframes float1{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-30px) rotate(5deg)}}
-  @keyframes float2{0%,100%{transform:translateX(0)}50%{transform:translateX(15px)}}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,0.4)}50%{box-shadow:0 0 0 12px rgba(251,191,36,0)}}
-  @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes modalIn{from{opacity:0;transform:scale(0.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-  @keyframes progressGlow{0%,100%{box-shadow:0 0 5px rgba(251,191,36,0.3)}50%{box-shadow:0 0 15px rgba(251,191,36,0.6)}}
-  @keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-3px)}20%,40%,60%,80%{transform:translateX(3px)}}
-  @keyframes bellSwing{0%{transform:rotate(0)}15%{transform:rotate(15deg)}30%{transform:rotate(-12deg)}45%{transform:rotate(8deg)}60%{transform:rotate(-5deg)}75%{transform:rotate(2deg)}100%{transform:rotate(0)}}
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png" />
+  <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png" />
 
-  /* Install banner */
-  .install-banner{display:none;position:fixed;bottom:60px;left:12px;right:12px;
-    background:linear-gradient(135deg,#1e293b,#0f172a);border:1px solid rgba(251,191,36,0.3);
-    border-radius:16px;padding:16px;z-index:200;animation:slideIn 0.3s ease-out;
-    box-shadow:0 10px 40px rgba(0,0,0,0.5)}
-  .install-banner.show{display:block}
-  .install-banner h3{color:#FDE68A;font-size:14px;margin-bottom:6px}
-  .install-banner p{color:#94A3B8;font-size:12px;line-height:1.6}
-  .install-banner .close-btn{position:absolute;top:10px;right:14px;background:none;border:none;
-    color:#64748B;font-size:18px;cursor:pointer}
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
-  /* Wake lock indicator */
-  .wakelock-dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px}
-  .wakelock-dot.active{background:#22C55E;box-shadow:0 0 4px #22C55E}
-  .wakelock-dot.inactive{background:#EF4444}
-</style>
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      background: #1a1a2e;
+      color: #E2E8F0;
+      overscroll-behavior-y: contain;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      font-family: 'Noto Serif TC', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, serif;
+      /* Avoid iOS double-tap zoom on buttons */
+      touch-action: manipulation;
+    }
+    /* Disable pull-to-refresh interfering with the sticky header */
+    body { min-height: 100vh; min-height: 100svh; }
+    #root { min-height: 100vh; min-height: 100svh; }
+
+    /* Splash while React boots */
+    #boot {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 16px;
+      background: linear-gradient(165deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+      z-index: 9999;
+      transition: opacity 0.4s ease;
+    }
+    #boot.hide { opacity: 0; pointer-events: none; }
+    #boot .logo {
+      width: 84px; height: 84px; border-radius: 22px;
+      background: url(icons/icon-192.png) center/cover no-repeat;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.4), 0 0 28px rgba(251,191,36,0.18);
+    }
+    #boot .ttl {
+      font-size: 16px; font-weight: 900; color: #FDE68A; letter-spacing: 2px;
+    }
+    #boot .sub { font-size: 12px; color: #94A3B8; }
+    #boot .dot { display: inline-block; animation: bb 1.4s infinite; }
+    @keyframes bb { 0%,80%,100% { opacity:0.2 } 40% { opacity: 1 } }
+
+    /* Animations used by the React app */
+    @keyframes float0 { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.1); } }
+    @keyframes float1 { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
+    @keyframes float2 { 0%,100% { transform: translateX(0); } 50% { transform: translateX(15px); } }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(251,191,36,0.4); } 50% { box-shadow: 0 0 0 12px rgba(251,191,36,0); } }
+    @keyframes slideIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes modalIn { from { opacity:0; transform:scale(0.9) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+    @keyframes progressGlow { 0%,100% { box-shadow: 0 0 5px rgba(251,191,36,0.3); } 50% { box-shadow: 0 0 15px rgba(251,191,36,0.6); } }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    button { font-family: inherit; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(251,191,36,0.3); border-radius: 4px; }
+  </style>
 </head>
 <body>
+  <div id="boot">
+    <div class="logo"></div>
+    <div class="ttl">拍計畫</div>
+    <div class="sub">載入中<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>
+  </div>
 
-<div id="app"></div>
+  <div id="root"></div>
 
-<script>
-// ============================================================
-// Generate Apple Touch Icon dynamically
-// ============================================================
-(function(){
-  const c=document.createElement('canvas');c.width=180;c.height=180;
-  const x=c.getContext('2d');
-  x.fillStyle='#1a1a2e';x.beginPath();x.roundRect(0,0,180,180,32);x.fill();
-  x.font='100px serif';x.textAlign='center';x.textBaseline='middle';
-  x.fillText('🎬',90,95);
-  document.getElementById('apple-icon').href=c.toDataURL('image/png');
-})();
+  <!-- React + Babel (pinned & integrity-protected) -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-// ============================================================
-// Service Worker Registration (inline)
-// ============================================================
-if('serviceWorker' in navigator){
-  const swCode=`
-    const CACHE='shooting-planner-v2';
-    const ASSETS=['/'];
-    self.addEventListener('install',e=>{self.skipWaiting()});
-    self.addEventListener('activate',e=>{e.waitUntil(clients.claim())});
-    self.addEventListener('fetch',e=>{
-      e.respondWith(
-        caches.match(e.request).then(r=>r||fetch(e.request).then(resp=>{
-          if(resp.status===200){
-            const c2=resp.clone();
-            caches.open(CACHE).then(cache=>cache.put(e.request,c2));
-          }
-          return resp;
-        }).catch(()=>caches.match('/')))
-      );
-    });
-  `;
-  const blob=new Blob([swCode],{type:'application/javascript'});
-  const swURL=URL.createObjectURL(blob);
-  navigator.serviceWorker.register(swURL).catch(()=>{});
-}
+  <script type="text/babel" src="app.jsx"></script>
 
-// ============================================================
-// Wake Lock API — keep screen on during the event
-// ============================================================
-let wakeLock=null;
-async function requestWakeLock(){
-  try{
-    if('wakeLock' in navigator){
-      wakeLock=await navigator.wakeLock.request('screen');
-      wakeLock.addEventListener('release',()=>{wakeLock=null;renderApp()});
-      renderApp();
-    }
-  }catch(e){}
-}
-document.addEventListener('visibilitychange',()=>{
-  if(document.visibilityState==='visible')requestWakeLock();
-});
-
-// ============================================================
-// DATA
-// ============================================================
-const SCHEDULE=[
-  {time:"08:00",title:"校門口集合出發",location:"福智教育園區校門口",chapter:"第一章：啟程與期待",
-    shots:[{type:"📷",desc:"校門口晨曦大景，掛活動名稱的紅布條或告示"},{type:"🎬",desc:"家長與學生陸續抵達，互相打招呼、簽到特寫（10-15秒）"},{type:"📷",desc:"孩子驚喜迎接父母的神情特寫"},{type:"📷",desc:"活動手冊/識別證/報名表特寫"},{type:"🎬",desc:"準備上車出發的縮時攝影或動態跟拍（15秒）"},{type:"📷",desc:"集合的全體大景照"}],
-    tips:"💡 建議拍攝片頭素材：清晨光線、校門口氛圍。可錄一段安靜的環境音。",
-    textOverlay:"「平常，是您牽著我的手看世界；今天，我們大手牽小手，一起走進這畝心靈福田。」"},
-  {time:"08:40",title:"抵達義工廚房集合",location:"湖山分院 義工廚房",chapter:"第一章：啟程與期待",
-    shots:[{type:"📷",desc:"湖山分院牌樓/入口大景"},{type:"🎬",desc:"下車步行進入分院的動態跟拍（10秒）"},{type:"📷",desc:"義工廚房外觀"},{type:"📷",desc:"食材及廣供品放置入口處的畫面"},{type:"📷",desc:"湖山分院莊嚴建築景觀（遠景）"},{type:"🎬",desc:"分院天空、樹木、環境空鏡頭（10秒）"}],
-    tips:"💡 抵達時是拍環境空鏡的好時機！分院建築、佛像、自然景色都要收集。"},
-  {time:"09:00",title:"大福及中餐製作開始",location:"義工廚房",chapter:"第二章：同心協力",
-    shots:[{type:"📷",desc:"琳瑯滿目的食材全景"},{type:"🎬",desc:"挽袖開始準備的動態畫面（洗菜、切菜、包裝）15秒"},{type:"🎬",desc:"★重點★ 家長與孩子一起分工的畫面（爸爸切菜、兒子遞盤子）"},{type:"📷",desc:"大手牽小手共同工作的特寫"},{type:"📷",desc:"手部動作特寫（切、洗、捧、揉）"},{type:"📷",desc:"認真的眼神、汗水、彼此相視而笑"},{type:"📷",desc:"汗流浹背但滿足的側臉"},{type:"🎬",desc:"紅豆大福製作過程縮時攝影（15-20秒）"},{type:"📷",desc:"齋僧品包裝細節特寫"},{type:"📷",desc:"流汗的額頭特寫"}],
-    tips:"💡 這段是影片最重要的素材來源！多拍親子互動畫面。可隨機訪問1-2位家長和學生：「今天最期待什麼？」",
-    textOverlay:"「大手牽小手，共植福田」"},
-  {time:"10:20",title:"齋僧品運送至大寮",location:"義工廚房 → 大寮",chapter:"第三章：虔誠供養",
-    shots:[{type:"🎬",desc:"搬運齋僧品往大寮的過程，展現團隊合作（15秒）"},{type:"📷",desc:"整齊排列的供養品"},{type:"📷",desc:"兩代人共同抬重物的畫面"},{type:"🎬",desc:"慢動作：雙手捧著供養物，眼神專注且恭敬"},{type:"📷",desc:"大寮煙囪特寫"},{type:"🎬",desc:"接著製作親師生大福的過程（10秒）"}],
-    tips:"💡 運送過程可用動態跟拍，強調團隊合作力量。注意拍攝法師穿梭的身影。",
-    textOverlay:"「一份供養，萬分誠心」"},
-  {time:"11:00",title:"全體打掃義工廚房",location:"義工廚房",chapter:"第五章：福田心耕",
-    shots:[{type:"🎬",desc:"掃地、拖地、擦桌子的勞動畫面（10秒）"},{type:"📷",desc:"打掃工具的勞動剪影"},{type:"📷",desc:"孩子認真清潔的側拍"},{type:"📷",desc:"學生向長輩問好的互動"}],
-    tips:"💡 捕捉「勞動中修行」的精神，可拍攝逆光剪影效果。"},
-  {time:"11:20",title:"全體移動至觀音亭",location:"觀音廣場",chapter:"第三章：虔誠供養",
-    shots:[{type:"🎬",desc:"移動過程中的行進畫面（10秒）"},{type:"📷",desc:"觀音廣場全景"},{type:"📷",desc:"佛像莊嚴特寫"}],
-    tips:"💡 路上可拍攝分院內的各種景色作為轉場素材。"},
-  {time:"11:30",title:"廣供及用餐・親子時間",location:"觀音廣場",chapter:"第三章＋第四章",
-    shots:[{type:"🎬",desc:"廣供儀式莊嚴感：大眾合掌、誦經、禮佛遠景（15秒）"},{type:"📷",desc:"廣供品佈置全景"},{type:"📷",desc:"大眾虔誠合掌的背影"},{type:"🎬",desc:"慢動作：祈願時的閉目凝神"},{type:"📷",desc:"用餐時家長為孩子夾菜的溫暖畫面"},{type:"📷",desc:"孩子為父母盛湯的特寫"},{type:"📷",desc:"豐富的午餐特寫"},{type:"🎬",desc:"餐後親子對話，草地散步聊天（15秒）"},{type:"📷",desc:"親子間自然的親密互動（搭肩、對笑）"},{type:"📷",desc:"全家福合照（協助拍攝各家庭）"},{type:"📷",desc:"勞動後的開懷大笑"}],
-    tips:"💡 這是情感類素材的黃金時段！用餐＋親子互動，多抓自然表情。可訪問家長：「今天最感動的一刻是什麼？」",
-    textOverlay:"「最美的風景，不是湖山的景色，而是我們一起為他人付出時，那份如出一轍的專注與笑容。」"},
-  {time:"13:30",title:"出坡＋清洗餐具",location:"湖山分院各處 / 義工廚房",chapter:"第五章：福田心耕",
-    shots:[{type:"🎬",desc:"出坡（整理環境）動作，體現勞動修行（15秒）"},{type:"📷",desc:"打掃工具的勞動剪影"},{type:"📷",desc:"回義工廚房清洗餐具的畫面"},{type:"📷",desc:"孩子們合作清洗鍋具"},{type:"🎬",desc:"清潔工作的縮時攝影（10秒）"}],
-    tips:"💡 出坡是好的空鏡頭素材，可拍逆光、側光的美感畫面。"},
-  {time:"15:10",title:"法師帶結行",location:"教室",chapter:"第五章：福田心耕",
-    shots:[{type:"🎬",desc:"結行分享會：大家圍成一圈，分享心得（錄一段聲音當旁白）"},{type:"📷",desc:"分享時專注聆聽的神情"},{type:"📷",desc:"法師開示的莊嚴畫面"},{type:"📷",desc:"分享時感動的表情"}],
-    tips:"💡 ★重要★ 可錄製1-2位學生或家長的心得分享作為影片旁白素材！問：「今天最感動的一刻？」",
-    textOverlay:"「齋僧，齋的是一份恭敬，種的是萬世福報。」"},
-  {time:"15:40",title:"返校・活動結束",location:"福智教育園區",chapter:"結尾",
-    shots:[{type:"📷",desc:"★★★ 全體大合照 ★★★（最重要！）"},{type:"🎬",desc:"全體大合照由小漸大的退後運鏡（15秒）"},{type:"📷",desc:"回程時揮手告別的畫面"},{type:"🎬",desc:"離開分院的動態跟拍（10秒）"}],
-    tips:"💡 片尾素材！全體合照務必拍好。告別畫面是很好的收尾素材。",
-    textOverlay:"「忙碌後的汗水，是喜悅的滋味。感恩每一份付出，圓滿每一次遇見。」\n2026.05.03 於 湖山分院\n福智國中 國二忠班 全體親師生敬製"}
-];
-
-const CHAPTERS=[
-  {ch:"第一章",name:"啟程與期待",dur:"約1分鐘",color:"#F97316"},
-  {ch:"第二章",name:"同心協力：製作與準備",dur:"約1.5分鐘",color:"#22C55E"},
-  {ch:"第三章",name:"虔誠供養：齋僧與廣供",dur:"約1分鐘",color:"#EC4899"},
-  {ch:"第四章",name:"溫情時光：用餐與親子",dur:"約0.5分鐘",color:"#F59E0B"},
-  {ch:"第五章",name:"福田心耕：出坡與結行",dur:"約1分鐘",color:"#3B82F6"}
-];
-
-const CHAPTER_COLORS={
-  "第一章：啟程與期待":{bg:"#FFF7ED",border:"#F97316",accent:"#EA580C",tag:"#FED7AA"},
-  "第二章：同心協力":{bg:"#F0FDF4",border:"#22C55E",accent:"#16A34A",tag:"#BBF7D0"},
-  "第三章：虔誠供養":{bg:"#FDF2F8",border:"#EC4899",accent:"#DB2777",tag:"#FBCFE8"},
-  "第三章＋第四章":{bg:"#FFF1F2",border:"#F43F5E",accent:"#E11D48",tag:"#FECDD3"},
-  "第五章：福田心耕":{bg:"#EFF6FF",border:"#3B82F6",accent:"#2563EB",tag:"#BFDBFE"},
-  "結尾":{bg:"#FAF5FF",border:"#A855F7",accent:"#9333EA",tag:"#E9D5FF"}
-};
-
-// ============================================================
-// STATE
-// ============================================================
-let state={
-  useSimTime:false, simHour:8, simMin:0,
-  expandedIdx:null, checkedShots:{},
-  alertShown:{}, showModal:null,
-  soundEnabled:true, preAlertMin:5,
-  showSettings:false, showFilmStructure:false,
-  showInstallBanner:false, vibrationEnabled:true,
-  keepScreenOn:true
-};
-
-// Persist checked shots
-try{
-  const saved=localStorage.getItem('shooting-planner-state');
-  if(saved){const p=JSON.parse(saved);state.checkedShots=p.checkedShots||{};state.alertShown=p.alertShown||{}}
-}catch(e){}
-function saveState(){
-  try{localStorage.setItem('shooting-planner-state',JSON.stringify({checkedShots:state.checkedShots,alertShown:state.alertShown}))}catch(e){}
-}
-
-// ============================================================
-// HELPERS
-// ============================================================
-function parseTime(t){const[h,m]=t.split(':').map(Number);return h*60+m}
-function formatCountdown(ms){
-  if(ms<=0)return'已到時間';
-  const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
-  if(h>0)return h+'時'+String(m).padStart(2,'0')+'分'+String(sec).padStart(2,'0')+'秒';
-  if(m>0)return m+'分'+String(sec).padStart(2,'0')+'秒';
-  return sec+'秒';
-}
-function getNow(){return new Date()}
-function getCurrentMinutes(){
-  if(state.useSimTime)return state.simHour*60+state.simMin;
-  const n=getNow();return n.getHours()*60+n.getMinutes();
-}
-function getCurrentSeconds(){return state.useSimTime?0:getNow().getSeconds()}
-function getChapterStyle(ch){return CHAPTER_COLORS[ch]||{bg:"#F9FAFB",border:"#6B7280",accent:"#4B5563",tag:"#E5E7EB"}}
-
-// Audio
-let audioCtx=null;
-function getAudioCtx(){
-  if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  if(audioCtx.state==='suspended')audioCtx.resume();
-  return audioCtx;
-}
-function playChime(){
-  try{
-    const ctx=getAudioCtx();
-    [523.25,659.25,783.99,1046.5].forEach((f,i)=>{
-      const o=ctx.createOscillator(),g=ctx.createGain();
-      o.connect(g);g.connect(ctx.destination);
-      o.frequency.value=f;o.type='sine';
-      g.gain.setValueAtTime(0.3,ctx.currentTime+i*0.15);
-      g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+i*0.15+0.4);
-      o.start(ctx.currentTime+i*0.15);o.stop(ctx.currentTime+i*0.15+0.4);
-    });
-  }catch(e){}
-}
-function playUrgentChime(){
-  try{
-    const ctx=getAudioCtx();
-    [0,0.2,0.4].forEach(t=>{
-      const o=ctx.createOscillator(),g=ctx.createGain();
-      o.connect(g);g.connect(ctx.destination);
-      o.frequency.value=880;o.type='square';
-      g.gain.setValueAtTime(0.25,ctx.currentTime+t);
-      g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+t+0.15);
-      o.start(ctx.currentTime+t);o.stop(ctx.currentTime+t+0.15);
-    });
-  }catch(e){}
-}
-function vibrate(pattern){
-  if(state.vibrationEnabled&&'vibrate' in navigator)navigator.vibrate(pattern);
-}
-
-// Progress
-function getProgress(idx){
-  const total=SCHEDULE[idx].shots.length;let done=0;
-  for(let i=0;i<total;i++)if(state.checkedShots[idx+'-'+i])done++;
-  return{done,total,pct:total?Math.round(done/total*100):0};
-}
-
-// ============================================================
-// RENDER
-// ============================================================
-function h(tag,attrs,...children){
-  const el=document.createElement(tag);
-  if(attrs)Object.entries(attrs).forEach(([k,v])=>{
-    if(k==='style'&&typeof v==='object')Object.assign(el.style,v);
-    else if(k.startsWith('on'))el.addEventListener(k.slice(2).toLowerCase(),v);
-    else if(k==='className')el.className=v;
-    else if(k==='innerHTML')el.innerHTML=v;
-    else el.setAttribute(k,v);
-  });
-  children.flat(Infinity).forEach(c=>{
-    if(c==null||c===false)return;
-    el.appendChild(typeof c==='string'||typeof c==='number'?document.createTextNode(c):c);
-  });
-  return el;
-}
-
-function renderApp(){
-  const app=document.getElementById('app');
-  const cm=getCurrentMinutes(), cs2=getCurrentSeconds(), now=getNow();
-
-  // Find active/next
-  let activeIdx=-1;
-  for(let i=SCHEDULE.length-1;i>=0;i--)if(cm>=parseTime(SCHEDULE[i].time)){activeIdx=i;break}
-  const nextIdx=activeIdx<SCHEDULE.length-1?activeIdx+1:-1;
-
-  // Total progress
-  const totalShots=SCHEDULE.reduce((a,s)=>a+s.shots.length,0);
-  const totalDone=Object.values(state.checkedShots).filter(Boolean).length;
-
-  // Alert check
-  SCHEDULE.forEach((item,idx)=>{
-    const itemMin=parseTime(item.time), alertMin=itemMin-state.preAlertMin;
-    const key=idx+'-'+item.time;
-    if(cm>=alertMin&&cm<itemMin+2&&!state.alertShown[key]){
-      if(state.soundEnabled){cm>=itemMin?playUrgentChime():playChime()}
-      vibrate([200,100,200,100,300]);
-      state.showModal=idx;
-      state.alertShown[key]=true;
-      saveState();
-    }
-  });
-
-  // Build DOM
-  app.innerHTML='';
-
-  // ---- Floating particles ----
-  const particles=h('div',{style:{position:'fixed',top:0,left:0,right:0,bottom:0,pointerEvents:'none',overflow:'hidden',zIndex:0}});
-  for(let i=0;i<5;i++){
-    particles.appendChild(h('div',{style:{
-      position:'absolute',width:(40+i*20)+'px',height:(40+i*20)+'px',borderRadius:'50%',
-      background:'radial-gradient(circle, rgba('+(i%2?'251,191,36':'236,72,153')+',0.06) 0%, transparent 70%)',
-      left:(10+i*15)+'%',top:(5+(i*17)%80)+'%',
-      animation:'float'+(i%3)+' '+(8+i*2)+'s ease-in-out infinite'
-    }}));
-  }
-  app.appendChild(particles);
-
-  // ---- Modal ----
-  if(state.showModal!==null){
-    const mi=state.showModal, item=SCHEDULE[mi];
-    const overlay=h('div',{style:{
-      position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.75)',
-      backdropFilter:'blur(8px)',WebkitBackdropFilter:'blur(8px)',zIndex:1000,
-      display:'flex',alignItems:'center',justifyContent:'center',padding:'20px'
-    },onClick:()=>{state.showModal=null;renderApp()}});
-
-    const shotsList=item.shots.map((s,i)=>
-      h('div',{style:{fontSize:'13px',color:'#E2E8F0',padding:'5px 0',
-        borderBottom:i<item.shots.length-1?'1px solid rgba(255,255,255,0.06)':'none'}},
-        s.type+' '+s.desc)
-    );
-
-    const modal=h('div',{style:{
-      background:'linear-gradient(135deg,#1e293b,#0f172a)',border:'2px solid #FBBF24',
-      borderRadius:'20px',padding:'28px 24px',maxWidth:'380px',width:'100%',
-      animation:'modalIn 0.3s ease-out',boxShadow:'0 25px 50px rgba(0,0,0,0.5),0 0 30px rgba(251,191,36,0.2)'
-    },onClick:e=>e.stopPropagation()},
-      h('div',{style:{textAlign:'center',marginBottom:'16px'}},
-        h('div',{style:{fontSize:'40px',marginBottom:'8px',animation:'bellSwing 0.6s ease-out'}},'🔔'),
-        h('div',{style:{fontSize:'13px',color:'#FBBF24',fontWeight:700,letterSpacing:'2px',marginBottom:'4px'}},'拍攝提醒'),
-        h('div',{style:{fontSize:'22px',fontWeight:900,color:'#FDE68A'}},item.time)
-      ),
-      h('div',{style:{background:'rgba(251,191,36,0.1)',borderRadius:'12px',padding:'16px',marginBottom:'16px'}},
-        h('div',{style:{fontSize:'17px',fontWeight:700,color:'#FDE68A',marginBottom:'6px'}},item.title),
-        h('div',{style:{fontSize:'13px',color:'#94A3B8',marginBottom:'12px'}},'📍 '+item.location),
-        h('div',{style:{fontSize:'13px',color:'#CBD5E1',fontWeight:600,marginBottom:'8px'}},'需要拍攝 '+item.shots.length+' 個鏡頭：'),
-        h('div',{style:{maxHeight:'200px',overflowY:'auto'}},...shotsList)
-      ),
-      h('button',{style:{
-        width:'100%',padding:'14px',border:'none',borderRadius:'12px',
-        background:'linear-gradient(135deg,#FBBF24,#F59E0B)',color:'#1a1a2e',
-        fontSize:'15px',fontWeight:700,cursor:'pointer',fontFamily:'inherit'
-      },onClick:()=>{state.showModal=null;state.expandedIdx=mi;renderApp()}},'查看拍攝清單')
-    );
-    overlay.appendChild(modal);
-    app.appendChild(overlay);
-  }
-
-  // ---- Header ----
-  const header=h('div',{className:'safe-top',style:{
-    position:'sticky',top:0,zIndex:100,
-    background:'linear-gradient(180deg,rgba(26,26,46,0.98),rgba(26,26,46,0.92))',
-    backdropFilter:'blur(20px)',WebkitBackdropFilter:'blur(20px)',
-    borderBottom:'1px solid rgba(251,191,36,0.15)',padding:'12px 16px 12px'
-  }});
-
-  const headerTop=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:'10px'}});
-  headerTop.appendChild(h('div',{},
-    h('div',{style:{fontSize:'11px',color:'#FBBF24',fontWeight:700,letterSpacing:'3px',marginBottom:'2px'}},'🎬 拍攝計畫'),
-    h('div',{style:{fontSize:'18px',fontWeight:900,color:'#FDE68A',lineHeight:'1.3'}},'國二忠 齋僧活動'),
-    h('div',{style:{fontSize:'11px',color:'#64748B',marginTop:'2px'}},'2026.05.03 ｜ 雲林斗六 湖山分院')
-  ));
-
-  const btnGroup=h('div',{style:{display:'flex',gap:'8px'}});
-  const filmBtn=h('button',{style:{
-    background:state.showFilmStructure?'rgba(251,191,36,0.2)':'rgba(255,255,255,0.06)',
-    border:'1px solid rgba(251,191,36,0.3)',borderRadius:'10px',padding:'8px 10px',
-    color:'#FDE68A',fontSize:'13px',cursor:'pointer'
-  },onClick:()=>{state.showFilmStructure=!state.showFilmStructure;renderApp()}},'🎞️');
-  const settBtn=h('button',{style:{
-    background:state.showSettings?'rgba(251,191,36,0.2)':'rgba(255,255,255,0.06)',
-    border:'1px solid rgba(251,191,36,0.3)',borderRadius:'10px',padding:'8px 10px',
-    color:'#FDE68A',fontSize:'13px',cursor:'pointer'
-  },onClick:()=>{state.showSettings=!state.showSettings;renderApp()}},'⚙️');
-  btnGroup.append(filmBtn,settBtn);
-  headerTop.appendChild(btnGroup);
-  header.appendChild(headerTop);
-
-  // Progress bar
-  const progWrap=h('div',{style:{display:'flex',alignItems:'center',gap:'10px'}});
-  const progBar=h('div',{style:{flex:1,height:'6px',background:'rgba(255,255,255,0.08)',borderRadius:'3px',overflow:'hidden'}});
-  progBar.appendChild(h('div',{style:{
-    width:(totalShots?(totalDone/totalShots)*100:0)+'%',height:'100%',
-    background:'linear-gradient(90deg,#FBBF24,#F59E0B)',borderRadius:'3px',
-    transition:'width 0.5s ease',animation:totalDone>0?'progressGlow 2s infinite':'none'
-  }}));
-  progWrap.appendChild(progBar);
-  progWrap.appendChild(h('div',{style:{fontSize:'12px',color:'#94A3B8',whiteSpace:'nowrap'}},totalDone+'/'+totalShots+' 鏡頭'));
-  header.appendChild(progWrap);
-
-  // Next countdown
-  if(nextIdx>=0){
-    const nextMin=parseTime(SCHEDULE[nextIdx].time);
-    const diffMs=(nextMin-cm)*60000-cs2*1000;
-    const countdownBox=h('div',{style:{
-      marginTop:'8px',padding:'8px 12px',background:'rgba(251,191,36,0.08)',borderRadius:'8px',
-      display:'flex',justifyContent:'space-between',alignItems:'center'
-    }});
-    countdownBox.appendChild(h('div',{style:{fontSize:'12px',color:'#94A3B8'},innerHTML:
-      '⏱ 下一站：<span style="color:#FDE68A;font-weight:600">'+SCHEDULE[nextIdx].title+'</span>'}));
-    countdownBox.appendChild(h('div',{style:{
-      fontSize:'13px',color:'#FBBF24',fontWeight:700,fontVariantNumeric:'tabular-nums'
-    }},formatCountdown(diffMs>0?diffMs:0)));
-    header.appendChild(countdownBox);
-  }
-  app.appendChild(header);
-
-  // ---- Settings Panel ----
-  if(state.showSettings){
-    const sPanel=h('div',{style:{
-      margin:'12px 16px',padding:'16px',background:'rgba(255,255,255,0.04)',
-      borderRadius:'16px',border:'1px solid rgba(255,255,255,0.08)',animation:'slideIn 0.2s ease-out'
-    }});
-    sPanel.appendChild(h('div',{style:{fontSize:'14px',fontWeight:700,color:'#FDE68A',marginBottom:'12px'}},'設定'));
-
-    // Sound toggle
-    const soundRow=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}});
-    soundRow.appendChild(h('span',{style:{fontSize:'13px'}},'🔊 提醒音效'));
-    soundRow.appendChild(makeToggle(state.soundEnabled,()=>{state.soundEnabled=!state.soundEnabled;renderApp()}));
-    sPanel.appendChild(soundRow);
-
-    // Vibration toggle
-    const vibRow=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}});
-    vibRow.appendChild(h('span',{style:{fontSize:'13px'}},'📳 震動提醒'));
-    vibRow.appendChild(makeToggle(state.vibrationEnabled,()=>{state.vibrationEnabled=!state.vibrationEnabled;renderApp()}));
-    sPanel.appendChild(vibRow);
-
-    // Screen on toggle
-    const screenRow=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}});
-    screenRow.appendChild(h('span',{style:{fontSize:'13px'}},'💡 保持螢幕常亮'));
-    screenRow.appendChild(makeToggle(state.keepScreenOn,()=>{
-      state.keepScreenOn=!state.keepScreenOn;
-      if(state.keepScreenOn)requestWakeLock();
-      else if(wakeLock){wakeLock.release();wakeLock=null}
-      renderApp();
-    }));
-    sPanel.appendChild(screenRow);
-
-    // Pre-alert time
-    const preRow=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}});
-    preRow.appendChild(h('span',{style:{fontSize:'13px'}},'⏰ 提前提醒（分鐘）'));
-    const preBtns=h('div',{style:{display:'flex',gap:'6px'}});
-    [3,5,10].forEach(m=>{
-      preBtns.appendChild(h('button',{style:{
-        padding:'4px 12px',borderRadius:'8px',border:'none',cursor:'pointer',
-        background:state.preAlertMin===m?'#FBBF24':'rgba(255,255,255,0.1)',
-        color:state.preAlertMin===m?'#1a1a2e':'#94A3B8',fontSize:'13px',fontWeight:600
-      },onClick:()=>{state.preAlertMin=m;renderApp()}},String(m)));
-    });
-    preRow.appendChild(preBtns);
-    sPanel.appendChild(preRow);
-
-    // Sim time
-    const simSep=h('div',{style:{borderTop:'1px solid rgba(255,255,255,0.08)',paddingTop:'12px'}});
-    const simRow=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}});
-    simRow.appendChild(h('span',{style:{fontSize:'13px'}},'🕐 模擬時間模式'));
-    simRow.appendChild(makeToggle(state.useSimTime,()=>{state.useSimTime=!state.useSimTime;renderApp()}));
-    simSep.appendChild(simRow);
-
-    if(state.useSimTime){
-      const sliders=h('div',{style:{display:'flex',gap:'8px',alignItems:'center'}});
-      const sh=h('input',{type:'range',min:'7',max:'16',value:String(state.simHour),
-        style:{flex:1,accentColor:'#FBBF24'},onInput:e=>{state.simHour=+e.target.value;state.alertShown={};renderApp()}});
-      const sm=h('input',{type:'range',min:'0',max:'59',value:String(state.simMin),
-        style:{flex:1,accentColor:'#FBBF24'},onInput:e=>{state.simMin=+e.target.value;state.alertShown={};renderApp()}});
-      sliders.append(sh,sm,h('span',{style:{
-        fontSize:'16px',fontWeight:700,color:'#FBBF24',minWidth:'52px',textAlign:'right',fontVariantNumeric:'tabular-nums'
-      }},String(state.simHour).padStart(2,'0')+':'+String(state.simMin).padStart(2,'0')));
-      simSep.appendChild(sliders);
-    }
-    sPanel.appendChild(simSep);
-
-    // Reset button
-    const resetSep=h('div',{style:{borderTop:'1px solid rgba(255,255,255,0.08)',paddingTop:'12px',marginTop:'12px'}});
-    resetSep.appendChild(h('button',{style:{
-      width:'100%',padding:'10px',border:'1px solid rgba(239,68,68,0.3)',borderRadius:'10px',
-      background:'rgba(239,68,68,0.08)',color:'#F87171',fontSize:'13px',cursor:'pointer',fontFamily:'inherit'
-    },onClick:()=>{
-      if(confirm('確定要重置所有拍攝進度嗎？')){
-        state.checkedShots={};state.alertShown={};saveState();renderApp();
+  <script>
+    // Hide splash once React paints
+    (function () {
+      let hidden = false;
+      function hide() {
+        if (hidden) return;
+        const root = document.getElementById('root');
+        if (!root || !root.firstChild) return;
+        const boot = document.getElementById('boot');
+        if (boot) {
+          boot.classList.add('hide');
+          setTimeout(() => boot.remove(), 500);
+        }
+        hidden = true;
       }
-    }},'🗑️ 重置所有拍攝進度'));
-    sPanel.appendChild(resetSep);
+      const obs = new MutationObserver(hide);
+      obs.observe(document.getElementById('root'), { childList: true });
+      // Safety fallback
+      setTimeout(hide, 4000);
+    })();
 
-    app.appendChild(sPanel);
-  }
-
-  // ---- Film Structure ----
-  if(state.showFilmStructure){
-    const fPanel=h('div',{style:{
-      margin:'12px 16px',padding:'16px',background:'rgba(255,255,255,0.04)',
-      borderRadius:'16px',border:'1px solid rgba(255,255,255,0.08)',animation:'slideIn 0.2s ease-out'
-    }});
-    fPanel.appendChild(h('div',{style:{fontSize:'14px',fontWeight:700,color:'#FDE68A',marginBottom:'12px'}},'🎞️ 影片架構（約5分鐘）'));
-    CHAPTERS.forEach((c,i)=>{
-      const row=h('div',{style:{
-        display:'flex',alignItems:'center',gap:'10px',padding:'8px 0',
-        borderBottom:i<CHAPTERS.length-1?'1px solid rgba(255,255,255,0.05)':'none'
-      }});
-      row.appendChild(h('div',{style:{width:'8px',height:'8px',borderRadius:'50%',background:c.color,flexShrink:0}}));
-      row.appendChild(h('div',{style:{flex:1}},h('div',{style:{fontSize:'13px',fontWeight:600,color:'#E2E8F0'}},c.ch+'：'+c.name)));
-      row.appendChild(h('div',{style:{fontSize:'12px',color:'#64748B'}},c.dur));
-      fPanel.appendChild(row);
-    });
-    fPanel.appendChild(h('div',{style:{
-      marginTop:'12px',padding:'10px',borderRadius:'10px',background:'rgba(251,191,36,0.06)',
-      fontSize:'12px',color:'#94A3B8',lineHeight:'1.6'
-    },innerHTML:'🎵 音樂建議：前半段輕快活潑 → 齋僧過程莊重 → 結尾感人溫馨<br>🎙️ 建議錄製1-2位家長/學生的心聲作為旁白'}));
-    app.appendChild(fPanel);
-  }
-
-  // ---- Timeline ----
-  const timeline=h('div',{style:{padding:'16px 12px 120px',position:'relative',zIndex:1}});
-  // Line
-  timeline.appendChild(h('div',{style:{
-    position:'absolute',left:'28px',top:'24px',bottom:'120px',width:'2px',
-    background:'linear-gradient(180deg,rgba(251,191,36,0.3),rgba(251,191,36,0.05))'
-  }}));
-
-  SCHEDULE.forEach((item,idx)=>{
-    const itemMin=parseTime(item.time);
-    const isActive=idx===activeIdx, isPast=cm>itemMin+30, isExpanded=state.expandedIdx===idx;
-    const progress=getProgress(idx), cs=getChapterStyle(item.chapter);
-
-    const wrapper=h('div',{style:{
-      position:'relative',marginBottom:'12px',paddingLeft:'44px',
-      animation:'slideIn 0.3s ease-out '+(idx*0.05)+'s both'
-    }});
-
-    // Dot
-    const dot=h('div',{style:{
-      position:'absolute',left:'20px',top:'18px',width:'18px',height:'18px',borderRadius:'50%',
-      background:isActive?'#FBBF24':isPast?'rgba(251,191,36,0.3)':'rgba(255,255,255,0.1)',
-      border:'2px solid '+(isActive?'#FBBF24':isPast?'rgba(251,191,36,0.4)':'rgba(255,255,255,0.15)'),
-      zIndex:2,animation:isActive?'pulse 2s infinite':'none',
-      display:'flex',alignItems:'center',justifyContent:'center'
-    }});
-    if(isPast&&progress.pct===100)dot.appendChild(h('span',{style:{fontSize:'10px'}},'✓'));
-    wrapper.appendChild(dot);
-
-    // Card
-    const card=h('div',{style:{
-      background:isActive?'linear-gradient(135deg,rgba(251,191,36,0.12),rgba(251,191,36,0.04))':'rgba(255,255,255,0.03)',
-      border:'1px solid '+(isActive?'rgba(251,191,36,0.3)':'rgba(255,255,255,0.06)'),
-      borderRadius:'16px',padding:'14px',cursor:'pointer',
-      opacity:isPast&&!isExpanded?0.6:1,transition:'all 0.3s ease'
-    },onClick:()=>{state.expandedIdx=isExpanded?null:idx;renderApp()}});
-
-    // Card header
-    const cardHead=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}});
-    const leftSide=h('div',{style:{flex:1}});
-    const tagRow=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'4px',flexWrap:'wrap'}});
-    tagRow.appendChild(h('span',{style:{fontSize:'18px',fontWeight:900,color:isActive?'#FBBF24':'#94A3B8',fontVariantNumeric:'tabular-nums'}},item.time));
-    tagRow.appendChild(h('span',{style:{
-      fontSize:'10px',padding:'2px 8px',borderRadius:'6px',background:cs.tag,color:cs.accent,
-      fontWeight:600,fontFamily:"'Noto Sans TC',sans-serif"
-    }},item.chapter));
-    leftSide.appendChild(tagRow);
-    leftSide.appendChild(h('div',{style:{fontSize:'15px',fontWeight:700,color:'#E2E8F0',marginBottom:'4px'}},item.title));
-    leftSide.appendChild(h('div',{style:{fontSize:'12px',color:'#64748B'}},'📍 '+item.location));
-    cardHead.appendChild(leftSide);
-
-    const rightSide=h('div',{style:{display:'flex',flexDirection:'column',alignItems:'flex-end',gap:'6px'}});
-    rightSide.appendChild(h('div',{style:{fontSize:'12px',color:progress.pct===100?'#22C55E':'#94A3B8',fontWeight:600}},progress.done+'/'+progress.total));
-    rightSide.appendChild(h('span',{style:{
-      fontSize:'16px',transform:isExpanded?'rotate(180deg)':'rotate(0deg)',
-      transition:'transform 0.2s',display:'inline-block'
-    }},'▾'));
-    cardHead.appendChild(rightSide);
-    card.appendChild(cardHead);
-
-    // Mini progress
-    const miniProg=h('div',{style:{marginTop:'8px',height:'3px',background:'rgba(255,255,255,0.06)',borderRadius:'2px',overflow:'hidden'}});
-    miniProg.appendChild(h('div',{style:{
-      width:progress.pct+'%',height:'100%',
-      background:progress.pct===100?'#22C55E':'#FBBF24',borderRadius:'2px',transition:'width 0.4s ease'
-    }}));
-    card.appendChild(miniProg);
-
-    // Expanded
-    if(isExpanded){
-      const expDiv=h('div',{style:{marginTop:'14px',animation:'slideIn 0.2s ease-out'}});
-
-      if(item.tips){
-        expDiv.appendChild(h('div',{style:{
-          padding:'10px 12px',borderRadius:'10px',background:'rgba(251,191,36,0.08)',
-          border:'1px solid rgba(251,191,36,0.15)',fontSize:'12px',color:'#FDE68A',
-          lineHeight:'1.6',marginBottom:'12px'
-        }},item.tips));
-      }
-      if(item.textOverlay){
-        expDiv.appendChild(h('div',{style:{
-          padding:'10px 12px',borderRadius:'10px',background:'rgba(236,72,153,0.06)',
-          border:'1px solid rgba(236,72,153,0.15)',fontSize:'12px',color:'#F9A8D4',
-          lineHeight:'1.7',marginBottom:'12px',fontStyle:'italic',whiteSpace:'pre-line'
-        }},'✍️ 建議字幕：'+item.textOverlay));
-      }
-
-      expDiv.appendChild(h('div',{style:{fontSize:'13px',fontWeight:700,color:'#E2E8F0',marginBottom:'8px'}},'📋 拍攝清單'));
-
-      item.shots.forEach((shot,si)=>{
-        const checked=!!state.checkedShots[idx+'-'+si];
-        const shotRow=h('div',{style:{
-          display:'flex',alignItems:'flex-start',gap:'10px',padding:'10px',
-          background:checked?'rgba(34,197,94,0.08)':'rgba(255,255,255,0.02)',
-          borderRadius:'10px',marginBottom:'4px',
-          border:'1px solid '+(checked?'rgba(34,197,94,0.2)':'transparent'),
-          cursor:'pointer',transition:'all 0.2s'
-        },onClick:e=>{
-          e.stopPropagation();
-          const key=idx+'-'+si;
-          state.checkedShots[key]=!state.checkedShots[key];
-          if(state.checkedShots[key])vibrate([50]);
-          saveState();renderApp();
-        }});
-
-        const checkbox=h('div',{style:{
-          width:'22px',height:'22px',borderRadius:'6px',flexShrink:0,
-          border:'2px solid '+(checked?'#22C55E':'rgba(255,255,255,0.2)'),
-          background:checked?'#22C55E':'transparent',
-          display:'flex',alignItems:'center',justifyContent:'center',
-          transition:'all 0.2s',marginTop:'1px'
-        }});
-        if(checked)checkbox.appendChild(h('span',{style:{color:'#fff',fontSize:'12px',fontWeight:900}},'✓'));
-        shotRow.appendChild(checkbox);
-
-        shotRow.appendChild(h('div',{style:{
-          fontSize:'13px',color:checked?'#64748B':'#CBD5E1',
-          textDecoration:checked?'line-through':'none',lineHeight:'1.5'
-        }},shot.type+' '+shot.desc));
-        expDiv.appendChild(shotRow);
+    // Register service worker (only over https or localhost — file:// will skip silently)
+    if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').catch(() => {});
       });
-      card.appendChild(expDiv);
     }
-    wrapper.appendChild(card);
-
-    // Auto scroll active into view
-    if(isActive)setTimeout(()=>wrapper.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
-
-    timeline.appendChild(wrapper);
-  });
-  app.appendChild(timeline);
-
-  // ---- Install Banner ----
-  if(state.showInstallBanner){
-    const banner=h('div',{className:'install-banner show'});
-    banner.appendChild(h('button',{className:'close-btn',onClick:()=>{state.showInstallBanner=false;renderApp()}},'✕'));
-    banner.appendChild(h('h3',{},'📲 安裝到主畫面'));
-    banner.appendChild(h('p',{innerHTML:'在 Safari 中點擊底部的 <strong style="color:#FDE68A">分享按鈕 ⬆️</strong>，然後選擇 <strong style="color:#FDE68A">「加入主畫面」</strong>，即可像 App 一樣使用！<br><br>安裝後可離線使用，螢幕也會保持常亮。'}));
-    app.appendChild(banner);
-  }
-
-  // ---- Bottom Bar ----
-  const bottom=h('div',{className:'safe-bottom',style:{
-    position:'fixed',bottom:0,left:0,right:0,
-    background:'linear-gradient(180deg,rgba(26,26,46,0.95),rgba(15,52,96,0.98))',
-    backdropFilter:'blur(20px)',WebkitBackdropFilter:'blur(20px)',
-    borderTop:'1px solid rgba(251,191,36,0.15)',padding:'10px 20px 12px',
-    display:'flex',justifyContent:'space-between',alignItems:'center',zIndex:100
-  }});
-
-  const leftInfo=h('div',{style:{fontSize:'11px',color:'#64748B',display:'flex',alignItems:'center',gap:'4px'}});
-  const wlDot=h('span',{className:'wakelock-dot '+(wakeLock?'active':'inactive')});
-  leftInfo.append(wlDot,state.useSimTime?'模擬':'即時');
-  bottom.appendChild(leftInfo);
-
-  const timeDisplay=h('div',{style:{
-    fontSize:'22px',fontWeight:900,color:'#FBBF24',fontVariantNumeric:'tabular-nums',
-    fontFamily:"'Noto Sans TC',sans-serif"
-  }});
-  if(state.useSimTime)timeDisplay.textContent=String(state.simHour).padStart(2,'0')+':'+String(state.simMin).padStart(2,'0');
-  else timeDisplay.textContent=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+':'+String(now.getSeconds()).padStart(2,'0');
-  bottom.appendChild(timeDisplay);
-
-  bottom.appendChild(h('div',{style:{fontSize:'11px',color:state.soundEnabled?'#22C55E':'#EF4444'}},
-    state.soundEnabled?'🔔 已開啟':'🔕 已關閉'));
-  app.appendChild(bottom);
-}
-
-// Toggle helper
-function makeToggle(on,cb){
-  const btn=h('div',{style:{
-    width:'48px',height:'26px',borderRadius:'13px',cursor:'pointer',position:'relative',
-    background:on?'#FBBF24':'rgba(255,255,255,0.15)',transition:'background 0.2s'
-  },onClick:cb});
-  btn.appendChild(h('div',{style:{
-    width:'20px',height:'20px',borderRadius:'50%',background:'#fff',
-    position:'absolute',top:'3px',left:on?'25px':'3px',transition:'left 0.2s'
-  }}));
-  return btn;
-}
-
-// ============================================================
-// INIT
-// ============================================================
-// Check if standalone (already installed as PWA)
-const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
-// Show install banner for Safari users who haven't installed
-if(!isStandalone&&/iPhone|iPad/.test(navigator.userAgent)){
-  state.showInstallBanner=true;
-}
-
-// Initial render + interval
-renderApp();
-setInterval(renderApp,1000);
-
-// Request wake lock
-if(state.keepScreenOn)requestWakeLock();
-
-// Init audio context on first touch (iOS requirement)
-document.addEventListener('touchstart',function initAudio(){
-  try{getAudioCtx()}catch(e){}
-  document.removeEventListener('touchstart',initAudio);
-},{once:true});
-</script>
+  </script>
 </body>
 </html>
